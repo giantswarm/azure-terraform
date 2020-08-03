@@ -6,3 +6,8 @@ terraform {
   }
   required_version = ">= 0.13"
 }
+
+provider "azurerm" {
+  # a features block must be defined, even if it is empty
+  features {}
+}

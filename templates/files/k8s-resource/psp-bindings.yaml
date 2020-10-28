@@ -15,9 +15,6 @@ subjects:
   name: coredns
   namespace: kube-system
 - kind: ServiceAccount
-  name: nginx-ingress-controller
-  namespace: kube-system
-- kind: ServiceAccount
   name: kube-proxy
   namespace: kube-system
 roleRef:

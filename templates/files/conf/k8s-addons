@@ -121,19 +121,10 @@ done
 # delete calico-kube-controllers
 $KUBECTL -n kube-system delete deploy calico-kube-controllers --ignore-not-found=true
 
-# delete legacy nginx daemonset
-$KUBECTL -n kube-system delete daemonset nginx-ingress-controller --ignore-not-found=true
-
 # apply k8s addons
 MANIFESTS="default-storage-class.yaml
  coredns-all.yaml
  metrics-server-all.yaml
- default-backend-dep.yaml
- default-backend-svc.yaml
- ingress-controller-cm.yaml
- ingress-controller-sa.yaml
- ingress-controller-deployment.yaml
- ingress-controller-svc.yaml
  vault-token-reviewer.yaml"
 for manifest in $MANIFESTS
 do

@@ -7,12 +7,22 @@ rules:
       resources:
       - clusters
       - machinedeployments
+      verbs:
+      - create
+      - update
+      - patch
+      - delete
     - group: "infrastructure.giantswarm.io"
       resources:
       - awsclusters
       - awsmachinedeployments
       - g8scontrolplanes
       - awscontrolplanes
+      verbs:
+      - create
+      - update
+      - patch
+      - delete
   # A catch-all rule to log all other requests at the Metadata level.
   - level: Metadata
     # Long-running requests like watches that fall under this rule will not

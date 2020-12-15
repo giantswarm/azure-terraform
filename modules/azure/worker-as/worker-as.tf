@@ -33,7 +33,7 @@ resource "azurerm_virtual_machine_scale_set" "workers" {
   os_profile {
     admin_username = "core"
     computer_name_prefix = "worker-"
-    custom_data = base64encode(var.user_data)
+    custom_data = base64encode(data.ignition_config.worker_loader.rendered)
   }
   os_profile_linux_config {
     disable_password_authentication = true

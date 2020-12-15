@@ -10,7 +10,7 @@ resource "local_file" "master_ignition" {
   filename = "${path.cwd}/generated/master-ignition${count.index}.yaml"
 }
 
-resource "azurerm_storage_blob" "ignition_blob" {
+resource "azurerm_storage_blob" "master_ignition_blob" {
   count = var.master_count
 
   name = "master-ignition${count.index}-${md5(var.user_data[count.index])}.yaml"
@@ -23,7 +23,7 @@ resource "azurerm_storage_blob" "ignition_blob" {
 }
 
 # Create temporary credentials to access storage account objects.
-data "azurerm_storage_account_sas" "sas" {
+data "azurerm_storage_account_sas" "master_sas" {
   connection_string = var.storage_acc_url
   https_only        = true
 
@@ -56,10 +56,10 @@ data "azurerm_storage_account_sas" "sas" {
   }
 }
 
-data "ignition_config" "loader" {
+data "ignition_config" "master_loader" {
   count = var.master_count
 
   replace {
-    source = "${element(azurerm_storage_blob.ignition_blob.*.url,count.index)}${data.azurerm_storage_account_sas.sas.sas}"
+    source = "${element(azurerm_storage_blob.master_ignition_blob.*.url,count.index)}${data.azurerm_storage_account_sas.master_sas.sas}"
   }
 }

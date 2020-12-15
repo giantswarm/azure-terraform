@@ -10,7 +10,7 @@ storage:
       group:
         id: 0
       contents:
-        source: "data:,{{ .GSReleaseVersion }}"
+        source: "data:,{{ .GSReleaseVersion }}-test"
 
 {{ if eq .Provider "aws" }}
     - path: /srv/aws-cni.yaml

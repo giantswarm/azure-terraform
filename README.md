@@ -5,18 +5,12 @@
 Terraform manifests for installing Giant Swarm's control plane.
 
 ## Prerequisites
-install terraform plugin: `terraform-provider-ct`
+
+
+Install terraform plugin: `terraform-provider-gotemplate`
+
 ```
-VERSION=v0.3.2
-wget https://github.com/poseidon/terraform-provider-ct/releases/download/$VERSION/terraform-provider-ct-$VERSION-linux-amd64.tar.gz
-tar xzf terraform-provider-ct-$VERSION-linux-amd64.tar.gz
-mv terraform-provider-ct-$VERSION-linux-amd64/terraform-provider-ct ~/.terraform.d/plugins/terraform-provider-ct_$VERSION
-```
-install terraform plugin: `terraform-provider-gotemplate`
-```
-mkdir -p ${HOME}/.terraform.d/plugins/linux_amd64
-go get -u github.com/giantswarm/terraform-provider-gotemplate
-ln -sf ${GOPATH}/bin/terraform-provider-gotemplate ${HOME}/.terraform.d/plugins/linux_amd64/terraform-provider-gotemplate
+GO111MODULE="on" GOBIN=${HOME}/.terraform.d/plugins/giantswarm.io/operations/gotemplate/0.1.0/$(go env GOOS)_amd64/ go get -u github.com/giantswarm/terraform-provider-gotemplate
 ```
 
 
